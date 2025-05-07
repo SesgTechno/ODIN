@@ -50,3 +50,6 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+/.vs/ODIN
+/ODIN/x64/Debug/ODIN.log
+/ODIN/x64/Debug
