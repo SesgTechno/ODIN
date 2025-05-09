@@ -1,12 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-#ifdef _WIN32
-#include <Windows.h>
-#elif __APPLE__
-#include <stdlib.h>
-#endif
+#include <hermod.c>
 
 typedef struct block {
     int index;
@@ -15,16 +10,6 @@ typedef struct block {
     int isInContext;
     char* language;
 } Block;
-
-void Handle_Error(char* error){
-    #ifdef _WIN32
-		MessageBoxA(NULL, error, "merger error", MB_OK | MB_ICONERROR);
-#elif _APPLE__
-		char command[256];
-		snprintf(command, sizeof(command), "osascript -e 'display dialog \"%s\" buttons {\"OK\"}'", error);
-		system(command);
-#endif
-}
 
 void generateExecutable(Block* blocks, int numBlocks, char* targetLanguage) {
     FILE* exeFile = fopen("cache.c", "w"); // file descriptor
